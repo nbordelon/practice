@@ -73,4 +73,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print(Solution().isValid(input("Enter your test case: ")))
+    usrInpt = (input("Enter your test case: "))
+    print(Solution().isValid(usrInpt))
