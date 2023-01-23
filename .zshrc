@@ -124,6 +124,12 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+cfg(){
+    vim ~/.zshrc
+    source ~/.zshrc
+    echo -e "\nNew .zshrc sourced."
+}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -142,7 +148,7 @@ alias gco="git checkout"
 alias gcob="git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout"
 alias gf="git fetch"
 alias gfo="git fetch origin"
-alias gl="git log"
+alias gl="git log --graph --decorate --all"
 alias gp="git pull"
 alias gpo="git push origin"
 alias grl="git reflog"
