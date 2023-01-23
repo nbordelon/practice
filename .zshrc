@@ -97,9 +97,9 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=( 
+    command-not-found
     git
     pip
-    command-not-found
     z
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -124,6 +124,17 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+cfg() {
+    vim ~/.zshrc
+    source ~/.zshrc
+    echo -e "\nNew .zshrc sourced."
+}
+
+fdiff() {
+  preview="git diff $@ --color=always -- {-1}"
+  git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -135,23 +146,25 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom location commands
 alias ga="git add ."
-alias gb="git branch --sort=-committerdate"
+alias gb="git checkout -b"
+alias gbl="git branch --sort=-committerdate"
 alias gc="git commit -nm"
 alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
 alias gco="git checkout"
 alias gcob="git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout"
-alias gf="git fetch"
+alias gf="git fetch origin $(git rev-parse --abbrev-ref HEAD)"
 alias gfo="git fetch origin"
-alias gl="git log"
-alias gp="git pull"
+alias gl='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'
+alias gp="git pull origin $(git rev-parse --abbrev-ref HEAD)"
 alias gpo="git push origin"
+alias gpu="git push -u origin $(git rev-parse --abbrev-ref HEAD)"
 alias grl="git reflog"
 alias gs="git status"
-alias gpub="git push --set-upstream"
-
-source /Users/nbordelon/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source $HOME/fzf-git.sh/fzf-git.sh
+source $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -U promptinit; promptinit
 prompt pure
