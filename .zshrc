@@ -134,20 +134,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Custom location commands
-alias ROOT="cd ~/practice"
-alias gs="git status"
-alias gb="git branch --sort=-committerdate"
-alias gfo="git fetch origin"
-alias gf="git fetch"
 alias ga="git add ."
-alias gpo="git push origin"
-alias gp="git pull"
+alias gb="git branch --sort=-committerdate"
 alias gc="git commit -nm"
-alias gco="git checkout"
-alias gl="git log"
-alias grl="git reflog"
 alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+alias gco="git checkout"
 alias gcob="git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout"
+alias gf="git fetch"
+alias gfo="git fetch origin"
+alias gl="git log"
+alias gp="git pull"
+alias gpo="git push origin"
+alias grl="git reflog"
+alias gs="git status"
+alias gpub="git push --set-upstream"
 
 source /Users/nbordelon/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
